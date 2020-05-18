@@ -1,0 +1,57 @@
+<ion-app>
+  
+  <ion-content>
+    <ion-back-button></ion-back-button> <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button>BACK</ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <div class="flex">
+      <ion-input class="input" [(ngModel)]="todo"></ion-input>
+      <ion-radio-group [(ngModel)]="important">
+          <ion-item>
+            <ion-label>low</ion-label>
+            <ion-radio slot="start"  color="success" value="0"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>medium</ion-label>
+            <ion-radio slot="start" color="secondary" value="1"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>hight</ion-label>
+            <ion-radio slot="start" color="primary" value="2"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>urgent</ion-label>
+            <ion-radio slot="start" color="danger" value="3"></ion-radio>
+          </ion-item>
+      </ion-radio-group>
+
+    </div>
+ 
+
+    <p *ngIf="error">
+      {{error}}
+    </p>
+    <ion-button (click)="add()">
+      add
+    </ion-button>
+
+    <ion-list *ngFor="let list of list; let i = index;">
+      <ion-item>
+        <ion-checkbox *ngIf="list.important == 0" color="success" checked></ion-checkbox> 
+        <ion-checkbox *ngIf="list.important == 1" color="secondary" checked></ion-checkbox> 
+        <ion-checkbox *ngIf="list.important == 2" color="primary" checked></ion-checkbox> 
+        <ion-checkbox *ngIf="list.important == 3" color="danger" checked></ion-checkbox> 
+        <ion-label>{{list.name}}</ion-label>
+        <ion-button (click)="delete(i)">
+          supprimer
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-app>
